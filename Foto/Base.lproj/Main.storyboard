@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Rounded-Black.otf">
+            <string>SFProRounded-Black</string>
+        </array>
+        <array key="SF-Pro-Rounded-Bold.otf">
+            <string>SFProRounded-Bold</string>
+        </array>
+        <array key="SF-Pro-Rounded-Heavy.otf">
+            <string>SFProRounded-Heavy</string>
+        </array>
+        <array key="SF-Pro-Rounded-Regular.otf">
+            <string>SFProRounded-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Loading View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="LoadingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoadingViewController" customModule="Foto" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdK-YD-qae">
+                                <rect key="frame" x="86.666666666666686" y="259" width="220" height="120"/>
+                                <fontDescription key="fontDescription" name="SFProRounded-Black" family="SF Pro Rounded" pointSize="100"/>
+                                <color key="textColor" red="0.43283358220000001" green="0.37061762809999999" blue="0.88632249829999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Heart" translatesAutoresizingMaskIntoConstraints="NO" id="z1t-5W-BLE">
+                                <rect key="frame" x="168.66666666666666" y="379" width="56" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="MCz-g2-dHO"/>
+                                    <constraint firstAttribute="height" constant="56" id="iEf-fD-YO7"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="xwc-zv-hOc">
+                                <rect key="frame" x="171.66666666666666" y="718" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="4MB-Vh-3bm"/>
+                                    <constraint firstAttribute="height" constant="50" id="5ej-Ye-Lpw"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.94948762659999997" green="0.95212453600000002" blue="0.98824053999999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="BdK-YD-qae" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="0In-rc-cN5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xwc-zv-hOc" secondAttribute="bottom" constant="50" id="6XK-2O-fbu"/>
+                            <constraint firstItem="xwc-zv-hOc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="HOc-PV-9D3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xwc-zv-hOc" secondAttribute="bottom" constant="50" id="Qnu-wC-ErS"/>
+                            <constraint firstItem="BdK-YD-qae" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VPa-Qd-eys"/>
+                            <constraint firstItem="z1t-5W-BLE" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Wp8-Nw-XKg"/>
+                            <constraint firstItem="z1t-5W-BLE" firstAttribute="top" secondItem="BdK-YD-qae" secondAttribute="bottom" id="mEJ-BZ-ijo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loadingIndicator" destination="xwc-zv-hOc" id="gJc-AE-2C8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="102" y="4"/>
+        </scene>
+        <!--WelcomeVC-->
+        <scene sceneID="5MR-6y-b8x">
+            <objects>
+                <viewController storyboardIdentifier="WelcomeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8w7-SG-c1O" customClass="WelcomeVC" customModule="Foto" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hZm-TP-Ijb">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Message Sent" translatesAutoresizingMaskIntoConstraints="NO" id="6d2-9R-DLi">
+                                <rect key="frame" x="0.0" y="109" width="393" height="393"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="6d2-9R-DLi" secondAttribute="height" multiplier="1:1" id="eXA-v0-tTQ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share pictures to your love" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrR-YN-yp7">
+                                <rect key="frame" x="65" y="544" width="263" height="29"/>
+                                <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="24"/>
+                                <color key="textColor" red="0.34901960784313724" green="0.35686274509803922" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Foto!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6S-Gf-hRY">
+                                <rect key="frame" x="81" y="502" width="231" height="34"/>
+                                <fontDescription key="fontDescription" name="SFProRounded-Heavy" family="SF Pro Rounded" pointSize="28"/>
+                                <color key="textColor" red="0.031372549019607843" green="0.070588235294117646" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctD-rO-nxM">
+                                <rect key="frame" x="113" y="712" width="167" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="lOY-zh-JKU"/>
+                                    <constraint firstAttribute="width" constant="167" id="wgh-FQ-mEo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProRounded-Bold" family="SF Pro Rounded" pointSize="16"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" red="0.029812445860000002" green="0.070639051499999994" blue="0.34119909999999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionPressed:" destination="8w7-SG-c1O" eventType="touchUpInside" id="BFN-GR-EeH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="plK-UO-wl3">
+                                <rect key="frame" x="113" y="648" width="167" height="56"/>
+                                <color key="backgroundColor" red="0.43283358220000001" green="0.37061762809999999" blue="0.88632249829999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="bJL-71-FeM"/>
+                                    <constraint firstAttribute="height" constant="56" id="y2J-uB-Qou"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProRounded-Bold" family="SF Pro Rounded" pointSize="16"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Get Started">
+                                    <color key="titleColor" red="0.94948762659999997" green="0.95212453600000002" blue="0.98824053999999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionPressed:" destination="8w7-SG-c1O" eventType="touchUpInside" id="rmk-k0-d7T"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hjX-Uf-zmw"/>
+                        <color key="backgroundColor" red="0.94948762659999997" green="0.95212453600000002" blue="0.98824053999999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="JrR-YN-yp7" firstAttribute="centerX" secondItem="hjX-Uf-zmw" secondAttribute="centerX" id="6e1-te-3Ee"/>
+                            <constraint firstItem="ctD-rO-nxM" firstAttribute="centerX" secondItem="hjX-Uf-zmw" secondAttribute="centerX" id="Bpj-xj-bvs"/>
+                            <constraint firstItem="hjX-Uf-zmw" firstAttribute="trailing" secondItem="6d2-9R-DLi" secondAttribute="trailing" id="Fqv-cR-8li"/>
+                            <constraint firstItem="hjX-Uf-zmw" firstAttribute="bottom" secondItem="ctD-rO-nxM" secondAttribute="bottom" constant="50" id="HKm-1f-kBy"/>
+                            <constraint firstItem="6d2-9R-DLi" firstAttribute="width" secondItem="hZm-TP-Ijb" secondAttribute="width" id="K6m-SD-PK0"/>
+                            <constraint firstItem="i6S-Gf-hRY" firstAttribute="centerX" secondItem="hjX-Uf-zmw" secondAttribute="centerX" id="clE-vk-9lz"/>
+                            <constraint firstItem="ctD-rO-nxM" firstAttribute="top" secondItem="plK-UO-wl3" secondAttribute="bottom" constant="8" id="dIY-hX-OVT"/>
+                            <constraint firstItem="JrR-YN-yp7" firstAttribute="top" secondItem="i6S-Gf-hRY" secondAttribute="bottom" constant="8" id="fha-hn-WM9"/>
+                            <constraint firstItem="6d2-9R-DLi" firstAttribute="leading" secondItem="hZm-TP-Ijb" secondAttribute="leading" id="lp2-RU-7qN"/>
+                            <constraint firstItem="6d2-9R-DLi" firstAttribute="top" secondItem="hjX-Uf-zmw" secondAttribute="top" constant="50" id="mTO-dL-2p1"/>
+                            <constraint firstItem="i6S-Gf-hRY" firstAttribute="top" secondItem="6d2-9R-DLi" secondAttribute="bottom" id="ov1-wB-rRU"/>
+                            <constraint firstItem="6d2-9R-DLi" firstAttribute="centerX" secondItem="hjX-Uf-zmw" secondAttribute="centerX" id="pfr-Oc-pID"/>
+                            <constraint firstItem="plK-UO-wl3" firstAttribute="centerX" secondItem="hjX-Uf-zmw" secondAttribute="centerX" id="vZF-X1-3jM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bXB-4A-GvO"/>
+                    <connections>
+                        <outlet property="loginBt" destination="plK-UO-wl3" id="Pms-QL-fnk"/>
+                        <outlet property="signInBt" destination="ctD-rO-nxM" id="SJd-pK-bB1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pmZ-KR-fZO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="898" y="4"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="4wN-bk-Bwf">
+            <objects>
+                <viewController id="nrS-gj-i5J" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c7h-OE-BQs">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your email?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLg-BI-DbV">
+                                <rect key="frame" x="88.666666666666686" y="259" width="216" height="29"/>
+                                <fontDescription key="fontDescription" name="SFProRounded-Heavy" family="SF Pro Rounded" pointSize="24"/>
+                                <color key="textColor" red="0.031372549020000001" green="0.070588235289999995" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Dbu-IZ-b9D">
+                                <rect key="frame" x="16" y="308" width="361" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="nzH-OP-Z7Q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pnH-ZG-pcH"/>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="JLg-BI-DbV" firstAttribute="centerX" secondItem="pnH-ZG-pcH" secondAttribute="centerX" id="4H2-QD-Yka"/>
+                            <constraint firstItem="Dbu-IZ-b9D" firstAttribute="top" secondItem="JLg-BI-DbV" secondAttribute="bottom" constant="20" id="GT4-kc-tZu"/>
+                            <constraint firstAttribute="trailing" secondItem="Dbu-IZ-b9D" secondAttribute="trailing" constant="16" id="P7k-vd-EYP"/>
+                            <constraint firstItem="Dbu-IZ-b9D" firstAttribute="centerX" secondItem="pnH-ZG-pcH" secondAttribute="centerX" id="Pzs-qW-4hd"/>
+                            <constraint firstItem="Dbu-IZ-b9D" firstAttribute="leading" secondItem="c7h-OE-BQs" secondAttribute="leading" constant="16" id="U5M-KQ-eVc"/>
+                            <constraint firstItem="JLg-BI-DbV" firstAttribute="top" secondItem="pnH-ZG-pcH" secondAttribute="top" constant="200" id="n9w-mp-PQ1"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UHS-Lg-oRK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1671" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Heart" width="56" height="56"/>
+        <image name="Message Sent" width="375" height="375"/>
+    </resources>
+</document>
