@@ -6,5 +6,20 @@ target 'Foto' do
   use_frameworks!
 
   # Pods for Foto
+  pod 'MBProgressHUD', '~> 1.2.0'
+  platform :ios, '8.0'
+  use_frameworks!
+  pod 'PasswordTextField'
+  pod 'AMDots'
+  
+end
 
+post_install do |installer|
+    installer.generated_projects.each do |project|
+        project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+            end
+        end
+    end
 end

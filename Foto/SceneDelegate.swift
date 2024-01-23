@@ -16,8 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard let windowScene = (scene as? UIWindowScene) else { return }
             let window = UIWindow(windowScene: windowScene)
             
-            let vc = LoadingViewController()
-            let navi = UINavigationController(rootViewController: vc)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loadingVC = storyboard.instantiateViewController(withIdentifier: "LoadingVC") as! LoadingViewController
+            let navi = UINavigationController(rootViewController: loadingVC)
             
             window.rootViewController = navi
             

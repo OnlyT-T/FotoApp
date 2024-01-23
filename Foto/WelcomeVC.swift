@@ -24,8 +24,26 @@ class WelcomeVC: UIViewController {
         loginBt.layer.cornerRadius = loginBt.frame.size.height/2
     }
     
-    @IBAction func actionPressed(_ sender: Any) {
-        
+    @IBAction func actionPressed(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        switch sender {
+        case loginBt:
+            let emailVC = storyboard.instantiateViewController(withIdentifier: "LoginEmailVC") as! LoginEmailVC
+            
+            self.navigationController?.pushViewController(emailVC, animated: true)
+            
+            self.navigationController?.isNavigationBarHidden = true
+        case signInBt:
+            let emailVC = storyboard.instantiateViewController(withIdentifier: "RegisterEmailVC") as! RegisterEmailVC
+            
+            self.navigationController?.pushViewController(emailVC, animated: true)
+            
+            self.navigationController?.isNavigationBarHidden = true
+            
+        default:
+            break
+        }
     }
     
 }
