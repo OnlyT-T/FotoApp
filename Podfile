@@ -6,11 +6,10 @@ target 'Foto' do
   use_frameworks!
 
   # Pods for Foto
-  pod 'MBProgressHUD', '~> 1.2.0'
-  platform :ios, '8.0'
-  use_frameworks!
   pod 'PasswordTextField'
   pod 'AMDots'
+  pod 'FirebaseAuth'
+  pod 'MBProgressHUD'
   
 end
 

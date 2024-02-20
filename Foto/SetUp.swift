@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 public func setUp(button: UIButton, scrollView: UIScrollView, textField: UITextField) {
 // Set up rounded corner for button
@@ -18,4 +19,13 @@ public func setUp(button: UIButton, scrollView: UIScrollView, textField: UITextF
     
 // Set up for Text Field
     textField.layer.cornerRadius = 18.0
+}
+
+public func showLoading(isShow: Bool, view: UIView) {
+    
+    if isShow {
+        MBProgressHUD.showAdded(to: view, animated: true)
+    } else {
+        MBProgressHUD.hide(for: view, animated: true)
+    }
 }
