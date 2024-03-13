@@ -26,5 +26,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:1035582469731:ios:7817e8246ae7ca11206a56</string>
+	<key>DATABASE_URL</key>
+	<string>https://foto-techmaster-default-rtdb.asia-southeast1.firebasedatabase.app</string>
 </dict>
 </plist>
