@@ -7,6 +7,7 @@
 
 import UIKit
 import PasswordTextField
+import FirebaseAuth
 
 class LoginPasswordVC: UIViewController {
     
@@ -17,6 +18,8 @@ class LoginPasswordVC: UIViewController {
     @IBOutlet weak var backBt: UIButton!
     
     @IBOutlet weak var nextBt: UIButton!
+    
+    var receivedEmail: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,30 +33,65 @@ class LoginPasswordVC: UIViewController {
         passwordTF.becomeFirstResponder()
     }
     
-    @IBAction func actionTapped(_ sender: UIButton) {
+    private func handleLogin() {
+        let email = receivedEmail ?? ""
+        let password = passwordTF.text ?? ""
+        
+        showLoading(isShow: true, view: view)
+        
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            
+            guard error == nil else {
+                let alert = UIAlertController(title: "Lỗi", message: error?.localizedDescription, preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "Ok", style: .default)
+                
+                alert.addAction(okAction)
+                
+                strongSelf.present(alert, animated: true)
+                
+                showLoading(isShow: false, view: self!.view)
+                return
+            }
+            
+            showLoading(isShow: false, view: self!.view)
+            
+            strongSelf.routeToMain()
+        }
+    }
+    
+    private func routeToMain() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
+        let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeVC")
+        
+        let keyWindow = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .compactMap({$0 as? UIWindowScene})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first
+        
+        keyWindow?.rootViewController = homeVC
+    }
+    
+    @IBAction func actionTapped(_ sender: UIButton) {
         switch sender {
         case nextBt:
-//            let emailVC = storyboard.instantiateViewController(withIdentifier: "EmailVC") as! LoginEmailVC
-//
-//            self.navigationController?.pushViewController(emailVC, animated: true)
-//
-//            self.navigationController?.isNavigationBarHidden = true
             print("Next Tapped")
+            handleLogin()
             
         case backBt:
             print("Back Tapped")
             
             let previousVC = (self.navigationController?.viewControllers[2])
-
+            
             self.navigationController?.popToViewController(previousVC!, animated: true)
             
             self.navigationController?.isNavigationBarHidden = true
             
         default:
             break
-        }    }
-    
+        }
+    }
 }
 

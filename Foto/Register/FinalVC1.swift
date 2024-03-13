@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseStorage
 import FirebaseFirestore
 
 class FinalVC1: UIViewController {
@@ -20,11 +18,15 @@ class FinalVC1: UIViewController {
     
     @IBOutlet weak var nextBt: UIButton!
     
-    let db = Firestore.firestore()
-    
     var getNickname: String?
     
-    var getPartnerAvatar: UIImageView?
+    var getPartnerAvatar: UIImage?
+    
+    var selfDocID: String?
+    
+    var partnerID: String?
+    
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +34,46 @@ class FinalVC1: UIViewController {
         setUpFinal(button: nextBt, border: avatarBorder, avatar: avatarImage)
         
         partnerName.text = getNickname
-        avatarImage = getPartnerAvatar
+        avatarImage.image = getPartnerAvatar
+    }
+    
+    private func updateData() {
+        let docID = selfDocID ?? ""
+        let partnerId = partnerID ?? ""
+        let partnerName = getNickname ?? ""
+        
+        let data: [String: Any] = [
+            "Partner's nickname": partnerName,
+            "Partner's user ID": partnerId
+        ]
+        
+        let docRef = db.collection("user").document(docID)
+        docRef.updateData(data) { error in
+            if let err = error {
+                print("Error update document: \(err)")
+            } else {
+                print("Update Successfully!!!")
+                self.routeToHomeVC()
+            }
+        }
+    }
+    
+    private func routeToHomeVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeVC")
+        
+        let keyWindow = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .compactMap({$0 as? UIWindowScene})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first
+        
+        keyWindow?.rootViewController = homeVC
     }
 
     @IBAction func nextTapped(_ sender: Any) {
         print("Next Tap Tap")
-        
+        updateData()
     }
     
 }

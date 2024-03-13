@@ -6,24 +6,49 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class HomeVC: UIViewController {
+
+    @IBOutlet weak var logOutBt: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func handleLogout() {
+        do {
+            try Auth.auth().signOut()
+            routeToLoadingVC()
+        } catch let signOutError as NSError {
+            let alert = UIAlertController(title: "Lỗi", message: signOutError.localizedDescription, preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default)
+            
+            alert.addAction(okAction)
+            
+            present(alert, animated: true)
+        }
     }
-    */
+    
+    private func routeToLoadingVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loadingVC = storyboard.instantiateViewController(withIdentifier: "LoadingVC") as! LoadingViewController
+        let navi = UINavigationController(rootViewController: loadingVC)
+        
+        let keyWindow = UIApplication.shared.connectedScenes
+            .filter({$0.activationState == .foregroundActive})
+            .compactMap({$0 as? UIWindowScene})
+            .first?.windows
+            .filter({$0.isKeyWindow}).first
+        
+        keyWindow?.rootViewController = navi
+    }
 
+    @IBAction func buttonTapped(_ sender: Any) {
+        print("Log Out Tapped")
+        handleLogout()
+    }
+    
 }

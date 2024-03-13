@@ -29,18 +29,28 @@ class LoginEmailVC: UIViewController {
         emailTF.becomeFirstResponder()
     }
     
+    private func handleEmailLogin() {
+        let email = emailTF.text ?? ""
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let passwordVC = storyboard.instantiateViewController(withIdentifier: "LoginPasswordVC") as! LoginPasswordVC
+        
+        passwordVC.receivedEmail = email
+        
+        self.navigationController?.pushViewController(passwordVC, animated: true)
+        
+        self.navigationController?.isNavigationBarHidden = true
+
+    }
+    
     @IBAction func actionTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         switch sender {
         case nextBt:
-            let passwordVC = storyboard.instantiateViewController(withIdentifier: "LoginPasswordVC") as! LoginPasswordVC
-            
-            self.navigationController?.pushViewController(passwordVC, animated: true)
-            
-            self.navigationController?.isNavigationBarHidden = true
-            
             print("Next Tapped")
+            handleEmailLogin()
             
         case backBt:
             print("Back Tapped")

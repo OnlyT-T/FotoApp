@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 
 class NicknameVC: UIViewController {
     
@@ -14,6 +17,11 @@ class NicknameVC: UIViewController {
     @IBOutlet weak var confirmBt: UIButton!
     
     @IBOutlet weak var scrollView: TPKeyboardAvoidingScrollView!
+    
+    var getEmail: String?
+    var getPassword: String?
+    
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,16 +35,49 @@ class NicknameVC: UIViewController {
         nicknameTF.becomeFirstResponder()
     }
     
+    func addDocFirestore() {
+        let nickname = nicknameTF.text ?? ""
+        let email = getEmail ?? ""
+        guard let uid = Auth.auth().currentUser?.uid else {
+            print("ERROR: UID")
+            return
+        }
+        
+        showLoading(isShow: true, view: view)
+        
+        var ref: DocumentReference? = nil
+        ref = db.collection("user").addDocument(data: [
+            "email": email,
+            "nickname": nickname,
+            "uid": uid
+        ]) { err in
+            if let err = err {
+                print("Error Adding Doc: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+                
+                showLoading(isShow: false, view: self.view)
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let avatarVC = storyboard.instantiateViewController(withIdentifier: "AvatarVC") as! AvatarVC
+                
+                avatarVC.receivedData = ref!.documentID
+                
+                self.navigationController?.pushViewController(avatarVC, animated: true)
+                
+                self.navigationController?.isNavigationBarHidden = true
+            }
+        }
+        
+   
+    }
+    
     @IBAction func actionTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         switch sender {
         case confirmBt:
-//            let passwordVC = storyboard.instantiateViewController(withIdentifier: "RegisterPasswordVC") as! RegisterPasswordVC
-//
-//            self.navigationController?.pushViewController(passwordVC, animated: true)
-//
-//            self.navigationController?.isNavigationBarHidden = true
+            addDocFirestore()
             
             print("Confirmed Nickname!")
             
@@ -44,5 +85,10 @@ class NicknameVC: UIViewController {
             break
         }
     }
+    
+    @IBAction func handleNicknameTF(_ sender: UITextField) {
+        print("value: \(sender.text ?? "")")
+    }
+    
     
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import AMDots
+import FirebaseAuth
 
 class LoadingViewController: UIViewController {
     
@@ -14,17 +15,17 @@ class LoadingViewController: UIViewController {
     
     @IBOutlet weak var loadingView: UIView!
     
+    var window: UIWindow?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.showLoading(isShow: true)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            
-            self.showLoading(isShow: false)
-            
-            self.pushVC()
-        }
+             
+             self.checkLogin()
+         }
     }
     
     func showLoading(isShow: Bool) {
@@ -45,11 +46,37 @@ class LoadingViewController: UIViewController {
         }
     }
     
-    func pushVC() {
+    private func checkLogin() {
+        
+        /// Check login
+        if Auth.auth().currentUser != nil {
+            /// Login rồi
+            self.showLoading(isShow: false)
+            routeToMain()
+        } else {
+            /// Chưa login
+            self.showLoading(isShow: false)
+            routeToWelcomeVC()
+        }
+    }
+    
+    private func routeToWelcomeVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeVC") as! WelcomeVC
+        let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeVC")
         
         self.navigationController?.pushViewController(welcomeVC, animated: true)
         self.navigationController?.isNavigationBarHidden = true
+        
+        window?.makeKeyAndVisible()
+    }
+    
+    private func routeToMain() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeVC")
+        
+        self.navigationController?.pushViewController(homeVC, animated: true)
+        self.navigationController?.isNavigationBarHidden = true
+        
+        window?.makeKeyAndVisible()
     }
 }

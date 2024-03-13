@@ -8,7 +8,6 @@ target 'Foto' do
   # Pods for Foto
   pod 'PasswordTextField'
   pod 'AMDots'
-  pod 'FirebaseAuth'
   pod 'MBProgressHUD'
   
 end

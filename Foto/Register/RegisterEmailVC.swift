@@ -8,6 +8,10 @@
 import UIKit
 import FirebaseAuth
 
+//protocol RegisterEmail {
+//    func handleEmailRegister()
+//}
+
 class RegisterEmailVC: UIViewController {
 
     @IBOutlet weak var backBt: UIButton!
@@ -17,6 +21,8 @@ class RegisterEmailVC: UIViewController {
     @IBOutlet weak var nextBt: UIButton!
     
     @IBOutlet weak var scrollView: TPKeyboardAvoidingScrollView!
+    
+//    var email: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +41,7 @@ class RegisterEmailVC: UIViewController {
         switch sender {
         case nextBt:
             print("Next Tapped")
-            handleRegister()
+            handleEmailRegister()
             
         case backBt:
             print("Back Tapped")
@@ -51,52 +57,24 @@ class RegisterEmailVC: UIViewController {
         }
     }
     
-    private func handleRegister() {
-        let email = emailTF.text ?? ""
+    func handleEmailRegister() {
+        guard let email = emailTF.text else { return }
         
-        showLoading(isShow: true, view: view)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        Auth.auth().createUser(withEmail: email, password: "") { [weak self] authResult, err in
-            guard let self = self else { return }
-            
-            showLoading(isShow: false, view: view)
-            
-            /// success
-            guard err == nil else {
-                /// Cach xử lý custom error.
-                var message = ""
-                switch AuthErrorCode.Code(rawValue: err!._code) {
-                case .emailAlreadyInUse:
-                    message = "Email đã tồn tại"
-                case .invalidEmail:
-                    message = "Email không hợp lệ"
-                default:
-                    message = err?.localizedDescription ?? ""
-                }
-                
-                /// Khi lỗi xảy ra thì show alert lỗi.
-                let alert = UIAlertController(title: "Lỗi", message: message, preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(title: "Ok", style: .default)
-                
-                alert.addAction(okAction)
-                
-                self.present(alert, animated: true)
-                return
-            }
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            let passwordVC = storyboard.instantiateViewController(withIdentifier: "RegisterPasswordVC") as! RegisterPasswordVC
-            
-            self.navigationController?.pushViewController(passwordVC, animated: true)
-            
-            self.navigationController?.isNavigationBarHidden = true
-        }
+        let passwordVC = storyboard.instantiateViewController(withIdentifier: "RegisterPasswordVC") as! RegisterPasswordVC
+        
+        passwordVC.receivedData = email
+        
+        self.navigationController?.pushViewController(passwordVC, animated: true)
+        
+        self.navigationController?.isNavigationBarHidden = true
+
     }
     
     @IBAction func handleTFChange(_ sender: UITextField) {
         print("value: \(sender.text ?? "")")
+        
     }
     
 }
